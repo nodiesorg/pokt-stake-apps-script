@@ -1,15 +1,13 @@
-## POKT App Stake Rotator
+## POKT App Stake Script
 
 ### Description
 
-The POKT App Stake Rotator is a tool designed to simplify the process of rotating POKT app stakes. Specifically, it replaces a set of old app stakes with new ones. 
+The POKT App Stake Script is a tool designed to simplify the process of staking applications. 
 
 ### Prerequisites
 
 - Node.js environment
-- A CSV file, `old-app-private-keys.csv`, containing old app private keys that you intend to unstake. This file should be located in the `input` directory.
-- A CSV file, `new-app-private-keys.csv`, containing new app private keys that you intend to stake. This file should also be located in the `input` directory.
-  - **Ensure that all your new public app stakes have at least 2 POKT**
+- A CSV file, `app-private-keys.csv`, containing new app private keys that you intend to stake. This file should also be located in the `input` directory.
 
 ### File Format
 
@@ -39,29 +37,27 @@ Ensure that the header is labeled "privateKey" and each subsequent row contains 
    ```bash
    npm install -g typescript
    ```
-3. **Environment Variables**: Set up the `chainId` environment variable if it's different from the default ("mainnet").
-
-   ```bash
-   export chainId="testnet"
-   ```
-
+   
 ### Usage
 
 1. **Execution**: Simply run the following command in the root directory:
 
    ```bash
-   node index.js
+   npm run start
    ```
 
 2. **Follow the prompts**:
 
-    - You will first be prompted to enter your POKT RPC Provider URL. Enter the appropriate URL.
-    - The tool will then check for the existence and validity of the `old-app-private-keys.csv` and `new-app-private-keys.csv` files.
+    - You will first be prompted to enter your POKT RPC Provider URL. Enter the appropriate URL
+      - For testnet we provide a complimentary testnet RPC URL: https://pokt-testnet-rpc.nodies.org
     - If everything is in order, you will receive a summary of the actions about to be performed and be asked for confirmation before proceeding.
-    - If you confirm the actions, the tool will proceed to unstake old app stakes and stake new app stakes.
+    - If you confirm the actions, the tool will proceed to stake new app stakes.
+
+_Note: Keep in mind that each POKT transaction costs 0.01 POKT fee. So if you are staking your entire wallet balance, account for the fee._
+1 POKT = 1000000 UPOKT
 
 3. **Check the Results**:
 
-    - After the process is completed, you can check the results in the `output` directory. A CSV file will be generated for both the staking and unstaking actions, detailing the success or failure of each action.
+    - After the process is completed, you can check the results in the `output` directory. A CSV file will be generated for staked applications, detailing the success or failure of each stake tx.
 
 ---

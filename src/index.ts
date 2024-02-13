@@ -107,7 +107,7 @@ async function handleBatchAppStake(appPrivateKeys: string[], testnet: boolean, c
     for (const {address, response, success} of responses) {
         csvContent += `${address},${response},${success}\n`;
     }
-    const outputFileName = `${new Date().toISOString()}-results.csv`;
+    const outputFileName = `${new Date().toISOString()}-results.csv`.replace(/:/g,"_");
     const outputPath = Path.join(__dirname, "../", "output", outputFileName);
     fs.writeFileSync(outputPath, csvContent, 'utf-8');
     console.log(`Results saved to ${outputPath}`);

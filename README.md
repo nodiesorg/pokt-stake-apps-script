@@ -40,7 +40,7 @@ Ensure that the header is labeled "privateKey" and each subsequent row contains 
    
 ### Usage
 
-1. **Execution**: Simply run the following command in the root directory:
+1. **Execution**: Simply run the following command in the root project directory and follow the prompts:
 
    ```bash
    npm run start

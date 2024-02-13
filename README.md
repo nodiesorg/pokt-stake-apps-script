@@ -61,3 +61,23 @@ _Note: Keep in mind that each POKT transaction costs 0.01 POKT fee. So if you ar
     - After the process is completed, you can check the results in the `output` directory. A CSV file will be generated for staked applications, detailing the success or failure of each stake tx.
 
 ---
+
+### Example Execution
+```sh
+Enter your POKT RPC Provider URL: https://pokt-testnet-rpc.nodies.org
+Enter the chains you wish to stake, i.e: 0007,0021,0008: 0007
+Enter the amount of uPOKT you wish to stake, i.e: 100000000: 10000000000000
+Is this for testnet?, i.e: yes/no: yes
+
+App stakes count being staked: 5
+RPC Provider: https://pokt-testnet-rpc.nodies.org
+
+Does this seem correct? Confirm by typing yes: yes
+Attempting to stake app:  ccd667d108882c2811ea066b00a505e5cbe096ed
+Attempting to stake app:  6573be637ecef7ae283725bcf3e4b470136357bd
+Attempting to stake app:  f978776fd145b7236fe899935d511a737497ddbc
+Attempting to stake app:  58b026b0ae113c7bb7b2bddd59025bbd744a5ecf
+Attempting to stake app:  61e04d656528a8499d35434328dc8ef97a8585f1
+Results saved to {project_dir}/stake_app_script/output/2024-02-13T09_20_06.295Z-results.csv
+App stakes successfully staked
+```

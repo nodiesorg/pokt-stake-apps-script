@@ -1,5 +1,5 @@
 {
-  "name": "poktjs-csv-sender",
+  "name": "poktjs-app-stake-script",
   "version": "1.0.0",
   "main": "src/index.ts",
   "license": "MIT",

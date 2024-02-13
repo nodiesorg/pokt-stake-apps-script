@@ -37,6 +37,9 @@ async function main() {
     console.log('')
     console.log(`App stakes count being staked: ${appStakePrivateKeys.length}`)
     console.log(`RPC Provider: ${rpcProviderUrl}`)
+    console.log(`Testnet: ${isTestnet}`)
+    console.log(`Staked uPOKT Amount: ${amountToStake}`)
+    console.log(`Staked Chains: ${chainsStaked}`)
     console.log('')
 
     const confirm = await askQuestion(`Does this seem correct? Confirm by typing yes: `)

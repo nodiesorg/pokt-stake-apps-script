@@ -189,7 +189,7 @@ function isValidCsv(privateKeys: string[]): boolean {
  */
 function getAppPrivateKeysFromCSV(filePath: string): string[] {
     const receiverData = fs.readFileSync(filePath, 'utf-8');
-    const receiverAddressesFile = receiverData.split('\n').map(line => line.trim());
+    const receiverAddressesFile = receiverData.split('\n').map(line => line.trim()).filter(line => line);
 
     if (!isValidCsv(receiverAddressesFile)) {
         throw new Error(`malformed CSV for app keys: ${filePath}`)

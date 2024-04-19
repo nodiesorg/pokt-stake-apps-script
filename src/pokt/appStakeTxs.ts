@@ -12,6 +12,7 @@ import {getPoktProvider} from "../di";
 export async function appStakeRetry(appPrivateKey: string, retryAttempts = 10, testnet:boolean,  stakeAmount: string, chains: string[]): Promise<string> {
     const signer = await KeyManager.fromPrivateKey(appPrivateKey);
 
+
     const transactionBuilder = new TransactionBuilder({
         provider: getPoktProvider(),
         signer,
@@ -19,11 +20,16 @@ export async function appStakeRetry(appPrivateKey: string, retryAttempts = 10, t
     });
 
 
+    if (stakeAmount == "-1") {
+        const app = await getPoktProvider().getApp({address: signer.getAddress()})
+        stakeAmount = app.stakedTokens
+    }
+
     console.log("Attempting to stake app: ", signer.getAddress());
     const actionMsg = transactionBuilder.appStake({
         appPubKey: signer.getPublicKey(),
         chains: chains,
-        amount: stakeAmount,
+        amount: stakeAmount
     });
 
     let error: any;

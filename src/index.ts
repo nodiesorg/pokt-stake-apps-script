@@ -27,7 +27,7 @@ async function main() {
     }
 
     const chainsStaked = (await askQuestion("Enter the chains you wish to stake, i.e: 0007,0021,0008: ")).split(",").map(s=>s.trim())
-    const amountToStake = await askQuestion("Enter the amount of uPOKT you wish to stake, i.e: 100000000: ")
+    const amountToStake = await askQuestion("Enter the amount of uPOKT you wish to stake, i.e: 100000000 (use -1 to use existing app stake amount): ")
 
     const isTestnet = (await askQuestionWithExpectedOutput("Is this for testnet?, i.e: yes/no: ", ["yes", "no"])) === "yes"
 

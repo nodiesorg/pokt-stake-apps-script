@@ -75,7 +75,7 @@ async function main() {
 async function handleBatchAppStake(appPrivateKeys: string[], testnet: boolean, chains: string[], upokt: string) {
 
     const responses: {
-        address: string,
+        privateKey: string,
         response: string,
         success: boolean
     }[] = [];
@@ -83,21 +83,21 @@ async function handleBatchAppStake(appPrivateKeys: string[], testnet: boolean, c
 
     for (let i = 0; i < appPrivateKeys.length; i += STAKE_BATCH_SIZE) {
         const batch = appPrivateKeys.slice(i, i + STAKE_BATCH_SIZE);
-        const batchResults = await Promise.allSettled(batch.map(addr => appStakeRetry(addr, 10, testnet, upokt, chains)));
+        const batchResults = await Promise.allSettled(batch.map(privateKey => appStakeRetry(privateKey, 10, testnet, upokt, chains)));
 
         for (let j = 0; j < batchResults.length; j++) {
             const result = batchResults[j];
             if (result.status === 'fulfilled') {
                 const responseValue = (result as PromiseFulfilledResult<string>).value;
                 responses.push({
-                    address: batch[j],
+                    privateKey: batch[j],
                     response: responseValue,
                     success: true,
                 });
             } else {
                 // promise rejected, likely from an exception
                 responses.push({
-                    address: batch[j],
+                    privateKey: batch[j],
                     response: (result as PromiseRejectedResult).reason.toString(),
                     success: false
                 });
@@ -106,9 +106,9 @@ async function handleBatchAppStake(appPrivateKeys: string[], testnet: boolean, c
     }
 
     // Create the csv file for output
-    let csvContent = 'address,response,success\n';
-    for (const {address, response, success} of responses) {
-        csvContent += `${address},${response},${success}\n`;
+    let csvContent = 'privateKey,response,success\n';
+    for (const {privateKey, response, success} of responses) {
+        csvContent += `${privateKey},${response},${success}\n`;
     }
     const outputFileName = `${new Date().toISOString()}-results.csv`.replace(/:/g,"_");
     const outputPath = Path.join(__dirname, "../", "output", outputFileName);
